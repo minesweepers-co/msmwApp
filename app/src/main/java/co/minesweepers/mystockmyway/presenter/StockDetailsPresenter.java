@@ -8,36 +8,23 @@ import android.view.ViewGroup;
 
 import co.minesweepers.mystockmyway.manager.StockManager;
 import co.minesweepers.mystockmyway.model.Stock;
-import co.minesweepers.mystockmyway.view.IBaseView;
-import co.minesweepers.mystockmyway.view.IStockDetailView;
+import co.minesweepers.mystockmyway.view.StockDetailView;
 
-public class StockDetailsPresenter implements IBasePresenter, IStockDetailsPresenter {
-    private IStockDetailView mView;
+public class StockDetailsPresenter {
+    private StockDetailView mView;
     private Stock mStock;
 
     public StockDetailsPresenter(Context context, String stockSymbol) {
         mStock = StockManager.getInstance(context).getStock(stockSymbol);
     }
 
-    @Override
-    public void onResume() {
-
-    }
-
-	@Override
-	public void onPause() {
-
-	}
-
-	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = ((IBaseView) mView).createView(inflater, container, savedInstanceState);
+        View view = mView.createView(inflater, container, savedInstanceState);
         mView.setStock(mStock);
         return view;
     }
 
-    @Override
-    public void bind(final IStockDetailView view) {
+    public void bind(final StockDetailView view) {
         mView = view;
     }
 }

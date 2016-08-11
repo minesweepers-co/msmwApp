@@ -22,13 +22,12 @@ import co.minesweepers.mystockmyway.R;
 import co.minesweepers.mystockmyway.model.Stock;
 import co.minesweepers.mystockmyway.model.StockData;
 
-public class StockDetailView implements IBaseView, IStockDetailView, OnChartValueSelectedListener {
+public class StockDetailView implements OnChartValueSelectedListener {
     private LineChart mChart;
     private TextView mTextViewX;
     private TextView mTextViewY;
     private TextView mTextViewStockSymbol;
 
-    @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.stock_details_fragment, container, false);
         mTextViewStockSymbol = (TextView) rootView.findViewById(R.id.stock_name);
@@ -141,7 +140,6 @@ public class StockDetailView implements IBaseView, IStockDetailView, OnChartValu
         mTextViewX.setText("");
     }
 
-    @Override
     public void setStock(Stock stock) {
         mTextViewStockSymbol.setText(stock.getSymbol());
         LineData data = getData(stock);
